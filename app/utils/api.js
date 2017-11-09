@@ -38,8 +38,8 @@ function handleError (error) {
 
 function getUserData (player) {
     return axios.all([
-        getProfile(player),
-        getRepos(player)
+        getProfile(player), //returns user.data
+        getRepos(player) // returns repos @ 100 per page
 
     ]).then(function(data){
         var profile = data[0];
@@ -47,7 +47,7 @@ function getUserData (player) {
         console.log(repos);
 
         return {
-            profile: profile,
+            profile: profile, //stores the response from the getProfile call
             score: calculateScore(profile, repos)
         }
     });
